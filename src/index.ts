@@ -1,12 +1,14 @@
-import { AxiosRequestConfig } from './types/index'
+import { AxiosRequestConfig, AxiosPromise, AxiosResponse } from './types/index'
 import xhr from './xhr'
 import { huildURL } from './helpers/url'
-import { transformRequest } from './helpers/data'
+import { transformRequest, transformResponse } from './helpers/data'
 import { processHeaders } from './helpers/headers'
 
-function axios(config: AxiosRequestConfig): void {
+function axios(config: AxiosRequestConfig): AxiosPromise {
   processConfig(config)
-  xhr(config)
+  return xhr(config).then(res => {
+    return transformResponseData(res)
+  })
 }
 
 /**
@@ -38,6 +40,16 @@ function transformURL(config: AxiosRequestConfig): string {
  */
 function transformRequestData(config: AxiosRequestConfig) {
   return transformRequest(config.data)
+}
+
+/**
+ * @description: 转换响应的 data
+ * @param {AxiosResponse} res
+ * @return {*}
+ */
+function transformResponseData(res: AxiosResponse): AxiosResponse {
+  res.data = transformResponse(res.data)
+  return res
 }
 
 /**

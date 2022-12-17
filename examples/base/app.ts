@@ -103,6 +103,35 @@ function testRequestData() {
   })
 }
 
+function testReponse() {
+  axios({
+    method: 'post',
+    url: '/base/post',
+    data: {
+      a: 1,
+      b: 2
+    }
+  }).then(res => {
+    // 因为没有设置 responseType 所以 res.data 是个 字符串 
+    // headers 为一个字符串
+    console.log(res)
+  })
+
+  axios({
+    method: 'post',
+    url: '/base/post',
+    responseType: 'json',
+    data: {
+      a: 3,
+      b: 4
+    }
+  }).then(res => {
+    console.log(res)
+  })
+}
+
 // testRequestParams()
 
-testRequestData()
+// testRequestData()
+
+testReponse()
