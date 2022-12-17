@@ -6,5 +6,33 @@
   </head>
   <body>
     <script src="/__build__/simple.js"></script>
+
+    <script>
+      const config = {
+        url: '/v1/getData',
+        method: 'GET',
+        params: {
+          name: 'jarvis',
+          pwd: 'HDSMJH'
+        }
+      }
+
+
+      function axios(conifg) {
+        console.log('axios', config)
+        process(config)
+        console.log('axios2', config)
+      }
+
+
+      function process(config) {
+        config.url = '/v1/getData?id=1'
+      }
+
+
+      axios(config)
+      console.log('-->')
+      console.log('-->conifg', config)
+    </script>
   </body>
 </html>
