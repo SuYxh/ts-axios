@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from './types/index'
 import xhr from './xhr'
 import { huildURL } from './helpers/url'
+import { transformRequest } from './helpers/data'
 
 function axios(config: AxiosRequestConfig): void {
   processConfig(config)
@@ -14,6 +15,7 @@ function axios(config: AxiosRequestConfig): void {
  */
 function processConfig(config: AxiosRequestConfig): void {
   config.url = transformURL(config)
+  config.data = transformRequestData(config)
 }
 
 /**
@@ -24,6 +26,15 @@ function processConfig(config: AxiosRequestConfig): void {
 function transformURL(config: AxiosRequestConfig): string {
   const { url, params } = config
   return huildURL(url, params)
+}
+
+/**
+ * @description: 转换请求的data
+ * @param {AxiosRequestConfig} config
+ * @return {*}
+ */
+function transformRequestData(config: AxiosRequestConfig) {
+  return transformRequest(config.data)
 }
 
 export default axios

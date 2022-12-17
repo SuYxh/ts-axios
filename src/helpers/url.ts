@@ -1,4 +1,4 @@
-import { isDate, isObject } from './util'
+import { isDate, isPlainObject } from './util'
 
 function encode(val: string): string {
   // 特殊字符不进行编码
@@ -41,7 +41,7 @@ export function huildURL(url: string, params?: any): string {
       if (isDate(val)) {
         // 处理 date 类型的val
         val = val.toISOString()
-      } else if (isObject(val)) {
+      } else if (isPlainObject(val)) {
         // 处理 Object 类型的val
         val = JSON.stringify(val)
       }
