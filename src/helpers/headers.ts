@@ -31,7 +31,6 @@ export function processHeaders(headers: any, data: any): any {
 
   if (isPlainObject(data)) {
     // 没有配置 Content-Type
-    console.log("headers && headers['Content-Type']", headers && headers['Content-Type'])
     if (headers && !headers['Content-Type']) {
       headers['Content-Type'] = 'application/json;charset=utf-8'
     }
