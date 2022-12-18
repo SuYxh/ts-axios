@@ -70,7 +70,7 @@ export interface Axios {
 }
 
 export interface AxiosInstance extends Axios {
-  (config: AxiosRequestConfig): AxiosPromise
+  <T = any>(config: AxiosRequestConfig): AxiosPromise<T>
 
-  (url: string, config?: AxiosRequestConfig): AxiosPromise
+  <T = any>(url: string, config?: AxiosRequestConfig): AxiosPromise<T>
 }
